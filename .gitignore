@@ -27,4 +27,5 @@
 mvnw.cmd
 mvnw
 database/h2db.mv.db
+database/h2db.trace.db
 

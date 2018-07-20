@@ -2,6 +2,7 @@ package com.github.hasanmirzae.briefcasedesktop;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
@@ -12,6 +13,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @SpringBootApplication
+@EnableAutoConfiguration
 public class BriefcaseDesktopApplication {
 
 	public static void main(String[] args) {
