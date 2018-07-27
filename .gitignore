@@ -28,4 +28,8 @@ mvnw.cmd
 mvnw
 database/h2db.mv.db
 database/h2db.trace.db
+*.sh
+src/main/resources/static/audio
+src/main/resources/static/dist
+src/main/resources/static/images
 
