@@ -30,7 +30,7 @@ public class FriendsController {
         return repository.save(friend);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         repository.deleteById(id);
     }

@@ -1,5 +1,6 @@
 package com.github.hasanmirzae.briefcasedesktop.utils;
 
+import com.github.hasanmirzae.briefcasedesktop.GUI;
 import dorkbox.systemTray.MenuItem;
 import dorkbox.util.CacheUtil;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -116,24 +117,11 @@ public class OSHelper {
 
     public static void createAndShowGUI(ConfigurableApplicationContext ctx) {
         String port = ctx.getEnvironment().getProperty("local.server.port");
-        JFrame frame = new JFrame("Briefcase running at http://localhost:"+port);
-        frame.setPreferredSize(new Dimension(500, 250));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon img = new ImageIcon(LOGO_PATH);
-        frame.setIconImage(img.getImage());
+        GUI frame = new GUI("Briefcase running at http://localhost:"+port, LOGO_PATH);
+        frame.getShutdownBtn().addActionListener(actionEvent -> System.exit(0));
 
+        frame.getLaunchBtn().addActionListener(actionEvent -> resolveBrowser("http://localhost:"+ctx.getEnvironment().getProperty("local.server.port")));
 
-        JButton shutdownBtn = new JButton("Shutdown");
-        shutdownBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                System.exit(0);
-            }
-        });
-        frame.getContentPane().add(shutdownBtn, BorderLayout.NORTH);
-
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
+        frame.showWindow();
     }
 }
