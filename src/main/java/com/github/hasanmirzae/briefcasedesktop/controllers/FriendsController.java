@@ -20,6 +20,11 @@ public class FriendsController {
         return repository.findAll();
     }
 
+    @GetMapping("/count")
+    public Long countFriends(){
+        return repository.findCount();
+    }
+
     @PostMapping
     public Friend insert(@RequestBody Friend friend){
         return repository.save(friend);
@@ -38,5 +43,10 @@ public class FriendsController {
     @GetMapping("/searchByUuid/{uuid}")
     public Friend findByUuid(@PathVariable String uuid){
         return repository.findByUuid(uuid);
+    }
+
+    @PutMapping("/avatarByUuid")
+    public void updateAvatarByUuid(@RequestParam String uuid, @RequestParam String uri){
+        repository.updateAvatarByUuid(uuid, uri);
     }
 }

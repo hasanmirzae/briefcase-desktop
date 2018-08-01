@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Repository
 public interface FriendRepository extends CrudRepository<Friend,Long> {
@@ -14,4 +15,6 @@ public interface FriendRepository extends CrudRepository<Friend,Long> {
     @Query("select count(p) from Friend p")
     Long findCount();
 
+    @Query("update  Friend p set p.avatar=:uri where uuid=:uuid")
+    void updateAvatarByUuid(@Param("uuid") String uuid, @Param("uri") String uri);
 }

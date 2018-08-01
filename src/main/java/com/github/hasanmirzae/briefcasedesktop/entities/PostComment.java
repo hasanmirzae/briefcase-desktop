@@ -1,7 +1,6 @@
 package com.github.hasanmirzae.briefcasedesktop.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -12,25 +11,24 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-public class Post {
+public class PostComment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @JsonProperty("isMine")
     private boolean isMine;
     private LocalDateTime createdAt;
     private String text;
     private String attachments;
-    private String posterUuid;
-    private Long remoteId;
+    private String commenterUuid;
+    private Long postId;
 
-    public Post(Long id, boolean isMine, LocalDateTime createdAt, String text, String attachments, String posterUuid, Long remoteId) {
+    public PostComment(Long id, boolean isMine, LocalDateTime createdAt, String text, String attachments, String commenterUuid, Long postId) {
         this.id = id;
         this.isMine = isMine;
         this.createdAt = createdAt;
         this.text = text;
         this.attachments = attachments;
-        this.posterUuid = posterUuid;
-        this.remoteId = remoteId;
+        this.commenterUuid = commenterUuid;
+        this.postId = postId;
     }
 }

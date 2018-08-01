@@ -2,8 +2,9 @@ package com.github.hasanmirzae.briefcasedesktop.controllers;
 
 import com.github.hasanmirzae.briefcasedesktop.entities.Feed;
 import com.github.hasanmirzae.briefcasedesktop.repositories.FeedRepository;
-import com.github.hasanmirzae.briefcasedesktop.repositories.FeedRepository;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController()
 @RequestMapping("/api/feeds")
@@ -21,6 +22,12 @@ public class FeedsController {
         return repository.findAll();
     }
 
+
+    @GetMapping("/{id}")
+    public Optional<Feed> getById(@PathVariable Long id){
+        return repository.findById(id);
+    }
+
     @PostMapping
     public Feed insert(@RequestBody Feed feed){
         return repository.save(feed);
@@ -31,9 +38,26 @@ public class FeedsController {
         return repository.save(feed);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         repository.deleteById(id);
     }
+
+    @PutMapping("/excludes/{exclude}")
+    public void updateExclude(@PathVariable String exclude){
+        repository.updateExclude(exclude);
+    }
+
+    @PutMapping("/receivers/{receivers}")
+    public void updateReceivers(@PathVariable String receivers){
+        repository.updateReceivers(receivers);
+    }
+
+
+    @GetMapping("/byFriendUuid/{uuid}")
+    public Iterable<Feed> getFeedsByFriendFeed(@PathVariable String uuid){
+        return repository.findFeedsByFriendUuid(uuid);
+    }
+
 
 }
