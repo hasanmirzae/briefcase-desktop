@@ -23,8 +23,9 @@ public class Post {
     private String attachments;
     private String posterUuid;
     private Long remoteId;
+    private String uuid;
 
-    public Post(Long id, boolean isMine, LocalDateTime createdAt, String text, String attachments, String posterUuid, Long remoteId) {
+    public Post(Long id, String uuid, boolean isMine, LocalDateTime createdAt, String text, String attachments, String posterUuid, Long remoteId) {
         this.id = id;
         this.isMine = isMine;
         this.createdAt = createdAt;
@@ -32,5 +33,6 @@ public class Post {
         this.attachments = attachments;
         this.posterUuid = posterUuid;
         this.remoteId = remoteId;
+        this.uuid = uuid;
     }
 }

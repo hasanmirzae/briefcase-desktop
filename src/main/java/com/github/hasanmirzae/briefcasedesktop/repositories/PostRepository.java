@@ -5,10 +5,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface PostRepository extends CrudRepository<Post,Long> {
 
+    Optional<Post> findByUuid(@Param("uuid") String uuid);
 
-
-    Post findByPosterUuidAndRemoteId(@Param("posterUuid") String posterUuid, @Param("remoteId") Long remoteId);
+    Optional<Post> findByPosterUuidAndUuid(@Param("posterUuid") String posterUuid, @Param("uuid") String uuid);
 }

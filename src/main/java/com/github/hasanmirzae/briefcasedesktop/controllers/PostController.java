@@ -27,6 +27,11 @@ public class PostController {
         return repository.findById(id);
     }
 
+    @GetMapping("/searchByUuid/{uuid}")
+    public Optional<Post> getByUuid(@PathVariable String uuid){
+        return repository.findByUuid(uuid);
+    }
+
     @PostMapping
     public Post insert(@RequestBody Post post){
         return repository.save(post);
@@ -42,9 +47,9 @@ public class PostController {
         repository.deleteById(id);
     }
 
-    @GetMapping("/byPosterUuidAndRemoteId")
-    public Post getPostsByPosterUuidAndRemoteId(@RequestParam String posterUuid, @RequestParam Long remoteId){
-        return  repository.findByPosterUuidAndRemoteId(posterUuid, remoteId);
+    @GetMapping("/byPosterUuidAndUuid")
+    public Optional<Post> getPostsByPosterUuidAndUuid(@RequestParam String posterUuid, @RequestParam String postUuid){
+        return  repository.findByPosterUuidAndUuid(posterUuid, postUuid);
     }
 
 
