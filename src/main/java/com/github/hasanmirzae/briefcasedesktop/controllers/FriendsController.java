@@ -4,6 +4,8 @@ import com.github.hasanmirzae.briefcasedesktop.entities.Friend;
 import com.github.hasanmirzae.briefcasedesktop.repositories.FriendRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController()
 @RequestMapping("/api/friends")
 public class FriendsController {
@@ -41,7 +43,7 @@ public class FriendsController {
     }
 
     @GetMapping("/searchByUuid/{uuid}")
-    public Friend findByUuid(@PathVariable String uuid){
+    public Optional<Friend> findByUuid(@PathVariable String uuid){
         return repository.findByUuid(uuid);
     }
 
